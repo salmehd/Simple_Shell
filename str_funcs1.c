@@ -62,7 +62,7 @@ char *_strcat(char *dest, const char *src)
 	while (*desttemp != '\0')
 		desttemp++;
 
-	while (*srcttemp != '\0')
+	while (*srctemp != '\0')
 		*desttemp++ = *srctemp++;
 	*desttemp = '\0';
 	return (dest);
