@@ -1,7 +1,6 @@
 /*
- * File: locate.c
- * Auth: Adewumi Kafilat
- *       Yusuf Ridwan
+ * Main: locate.c
+ * Auth: Salman Ahmed and Lugardo Sulley
  */
 
 #include "shell.h"
@@ -10,15 +9,13 @@ char *fill_path_dir(char *path);
 list_t *get_path_dir(char *path);
 
 /**
- * get_location - Locates a command in the PATH.
- * @command: The command to locate.
- *
- * Return: If an error occurs or the command cannot be located - NULL.
- *         Otherwise - the full pathname of the command.
+ * get_location - function that locates a command in the path
+ * @command:  command to locate.
+ * Return:  full pathname or NULL
  */
 char *get_location(char *command)
 {
-	char **path, *temp;
+	char **path, *tmp;
 	list_t *dirs, *head;
 	struct stat st;
 
@@ -31,22 +28,22 @@ char *get_location(char *command)
 
 	while (dirs)
 	{
-		temp = malloc(_strlen(dirs->dir) + _strlen(command) + 2);
-		if (!temp)
+		tmp = malloc(_strlen(dirs->dir) + _strlen(command) + 2);
+		if (!tmp)
 			return (NULL);
 
-		_strcpy(temp, dirs->dir);
-		_strcat(temp, "/");
-		_strcat(temp, command);
+		_strcpy(tmp, dirs->dir);
+		_strcat(tmp, "/");
+		_strcat(tmp, command);
 
-		if (stat(temp, &st) == 0)
+		if (stat(tmp, &st) == 0)
 		{
 			free_list(head);
-			return (temp);
+			return (tmp);
 		}
 
 		dirs = dirs->next;
-		free(temp);
+		free(tmp);
 	}
 
 	free_list(head);
@@ -55,13 +52,11 @@ char *get_location(char *command)
 }
 
 /**
- * fill_path_dir - Copies path but also replaces leading/sandwiched/trailing
- *		   colons (:) with current working directory.
+ * fill_path_dir - function that replaces colons with working direct
  * @path: The colon-separated list of directories.
- *
- * Return: A copy of path with any leading/sandwiched/trailing colons replaced
- *	   with the current working directory.
+ * Return: a path with any colons replaced
  */
+
 char *fill_path_dir(char *path)
 {
 	int i, length = 0;
@@ -110,15 +105,14 @@ char *fill_path_dir(char *path)
 }
 
 /**
- * get_path_dir - Tokenizes a colon-separated list of
- *                directories into a list_s linked list.
+ * get_path_dir - function that tokenizes a colon-separated list of directories
  * @path: The colon-separated list of directories.
- *
- * Return: A pointer to the initialized linked list.
+ * Return:  pointer to initialized linked list
  */
+
 list_t *get_path_dir(char *path)
 {
-	int index;
+	int sign;
 	char **dirs, *path_copy;
 	list_t *head = NULL;
 
@@ -130,9 +124,9 @@ list_t *get_path_dir(char *path)
 	if (!dirs)
 		return (NULL);
 
-	for (index = 0; dirs[index]; index++)
+	for (sign = 0; dirs[sign]; sign++)
 	{
-		if (add_node_end(&head, dirs[index]) == NULL)
+		if (add_node_end(&head, dirs[sign]) == NULL)
 		{
 			free_list(head);
 			free(dirs);
