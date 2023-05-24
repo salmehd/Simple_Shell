@@ -14,8 +14,8 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
  * @ptr: A pointer to the memory previously allocated.
  * @old_size: The size in bytes of the allocated space for ptr.
  * @new_size: The size in bytes for the new memory block.
- * Return: ptr if new_size == old_size, or new_size == 0 and ptr is not NULL - 
-   NULL, Else a pointer to reallocated memory block.
+ * Return: ptr if new_size == old_size, or new_size == 0 and ptr is not NULL -
+ * NULL, Else a pointer to reallocated memory block
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
@@ -94,7 +94,7 @@ void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b)
  * _getline - function to reads input from a stream.
  * @lineptr: buffer to store the input.
  * @n: lineptr size
- * @stream: stream 
+ * @stream: stream
  * Return:  bytes number present
  */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)

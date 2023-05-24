@@ -139,7 +139,7 @@ int run_args(char **args, char **front, int *exe_ret)
  * handle_args - function that gets, calls, and runs the execution of cmd
  * @exe_ret: return value last executed cmd
  * Return: input cant tokenized -1, if its read end of file - END_OF_FILE (-2),
- or exit value of last executed cmd
+ * or exit value of last executed cmd
  */
 int handle_args(int *exe_ret)
 {
